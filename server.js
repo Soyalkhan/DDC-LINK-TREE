@@ -2,11 +2,8 @@ const app = require('./app');  // Import the app instance from app.js
 const express = require("express");
 const PORT = process.env.PORT || 5000;
 
-const app = express();
 
-app.get('/',(req,res)=>{
-    res.send("ddc-api-running");
-})
+
 const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

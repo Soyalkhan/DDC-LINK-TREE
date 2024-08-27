@@ -1,7 +1,7 @@
 const app = require('./app');  // Import the app instance from app.js
 const express = require("express");
 const PORT = process.env.PORT || 5000;
-
+const cors = require("cors");  // Add this line
 
 
 const server = app.listen(PORT, () => {

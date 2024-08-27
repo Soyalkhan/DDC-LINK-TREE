@@ -9,10 +9,11 @@ dotenv.config({ path: './.env' });
 // Connect to database
 connectDB();
 
-// Enable CORS for all origins
-app.use(cors());
 
 const app = express();
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Body parser
 app.use(express.json());

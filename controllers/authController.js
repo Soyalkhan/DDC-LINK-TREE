@@ -5,6 +5,16 @@ const jwt = require('jsonwebtoken');
 exports.register = async (req, res) => {
     const { email, phone, password, confirmPassword } = req.body;
 
+           // Check if the email or phone number is already registered
+           const existingUser = await User.findOne({ $or: [{ email: email }, { phone: phone }] });
+
+           if (existingUser) {
+               return res.status(400).json({
+                   success: false,
+                   message: 'Email or Phone number is already registered'
+               });
+           }
+
     if (password !== confirmPassword) {
         return res.status(400).json({ success: false, error: 'Passwords do not match' });
     }

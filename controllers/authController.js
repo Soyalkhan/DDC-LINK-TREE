@@ -34,13 +34,13 @@ exports.login = async (req, res) => {
         const user = await User.findOne({ email }).select('+password');
 
         if (!user) {
-            return res.status(400).json({ success: false, error: 'Invalid credentials' });
+            return res.status(400).json({ success: false, error: 'You Dont have a account.' });
         }
 
         const isMatch = await user.matchPassword(password);
 
         if (!isMatch) {
-            return res.status(400).json({ success: false, error: 'Invalid credentials' });
+            return res.status(400).json({ success: false, error: 'Incorrect Password ' });
         }
 
         sendTokenResponse(user, 200, res);
@@ -71,5 +71,6 @@ const sendTokenResponse = (user, statusCode, res) => {
     res.status(statusCode).cookie('token', token, options).json({
         success: true,
         token,
+        Message: "User registered successfully."
     });
 };
